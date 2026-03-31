@@ -51,4 +51,7 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommonJsonInterface" Version="2026.318.115.18" />
+  </ItemGroup>
 </Project>

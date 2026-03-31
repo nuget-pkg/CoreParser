@@ -5,12 +5,12 @@ public class CSharpJsonHandler : IParseJson {
     public CSharpJsonHandler(bool numberAsDecimal) {
         jsonParser = new JsoncParser(numberAsDecimal);
     }
-    public object ParseJson(string json) {
+    public object? ParseJson(string json) {
         return jsonParser.ParseJson(json);
     }
-    public object[] ParseJsonSequence(string jsonSequenceString) {
-        object result = ParseJson(jsonSequenceString);
-        if (result == null) { return null; }
+    public object?[] ParseJsonSequence(string jsonSequenceString) {
+        object? result = ParseJson(jsonSequenceString);
+        if (result == null) return [null];
         return new object[] { result };
     }
 }

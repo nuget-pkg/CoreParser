@@ -1,4 +1,4 @@
-﻿using Global.Parser.JsonC;
+﻿using CoreParser.JsonC;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,12 +15,12 @@ public class JsoncParser
         this.numberAsDecimal = numberAsDecimal;
     }
 
-    public object ParseJson(string json)
+    public object? ParseJson(string json)
     {
         return Parse(json, this.numberAsDecimal);
     }
 
-    public static object Parse(string json, bool numberAsDecimal = false)
+    public static object? Parse(string json, bool numberAsDecimal = false)
     {
         if (String.IsNullOrEmpty(json)) return null;
         ParserContext context = new ParserContext(json, false);
@@ -217,34 +217,16 @@ public class JsoncParser
         return result;
     }
     // ReSharper disable once MemberCanBePrivate.Global
-    public static object RuleToObject(Rule rule, bool numberAsDecimal)
+    public static object? RuleToObject(Rule rule, bool numberAsDecimal)
     {
         var rules = SkipUseless(rule.rules);
         if (rule is Rule_json_text)
         {
-#if false
-            foreach (var r in rules)
-            {
-                //Assert.Single(rules);
-                return RuleToObject(rules[0], NumberAsDecimal);
-            }
-#else
-            // ReSharper disable once TailRecursiveCall
             return RuleToObject(rules[0], numberAsDecimal);
-#endif
         }
         else if (rule is Rule_value)
         {
-#if false
-            //Assert.Single(rules);
-            foreach (var r in rules)
-            {
-                return RuleToObject(rules[0], NumberAsDecimal);
-            }
-#else
-            // ReSharper disable once TailRecursiveCall
             return RuleToObject(rules[0], numberAsDecimal);
-#endif
         }
         else if (rule is Rule_array)
         {
@@ -269,10 +251,9 @@ public class JsoncParser
         }
         else if (rule is Rule_member)
         {
-            string name = null;
+            string name = "";
             foreach (var r in rules)
             {
-                //if (r is Rule_string) name = (string)RuleToObject(r, NumberAsDecimal);
                 if (r is Rule_member_name) name = (string)RuleToObject(r, numberAsDecimal);
                 if (r is Rule_value) return new KeyValuePair<string, object>(name, RuleToObject(r, numberAsDecimal));
             }
