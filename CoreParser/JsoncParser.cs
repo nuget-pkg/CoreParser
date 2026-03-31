@@ -31,8 +31,8 @@ public class JsoncParser
     // ReSharper disable once MemberCanBePrivate.Global
     public static string FullName(dynamic x)
     {
-        if (x is null) return "null";
-        string fullName = ((object)x).GetType().FullName;
+        if (x == null) return "null";
+        string fullName = ((object)x).GetType().FullName!;
         return fullName!.Split('`')[0];
     }
 
@@ -230,7 +230,7 @@ public class JsoncParser
         }
         else if (rule is Rule_array)
         {
-            var result = new List<object>();
+            var result = new List<object?>();
             foreach (var r in rules)
             {
                 //Assert.True(r is Rule_value);
@@ -240,11 +240,10 @@ public class JsoncParser
         }
         else if (rule is Rule_object)
         {
-            var result = new Dictionary<string, object>();
+            var result = new Dictionary<string, object?>();
             foreach (var r in rules)
             {
-                //Assert.True(r is Rule_member);
-                var pair = (KeyValuePair<string, object>)RuleToObject(r, numberAsDecimal);
+                var pair = (KeyValuePair<string, object?>)RuleToObject(r, numberAsDecimal)!;
                 result[pair.Key] = pair.Value;
             }
             return result;
@@ -254,16 +253,16 @@ public class JsoncParser
             string name = "";
             foreach (var r in rules)
             {
-                if (r is Rule_member_name) name = (string)RuleToObject(r, numberAsDecimal);
-                if (r is Rule_value) return new KeyValuePair<string, object>(name, RuleToObject(r, numberAsDecimal));
+                if (r is Rule_member_name) name = (string)RuleToObject(r, numberAsDecimal)!;
+                if (r is Rule_value) return new KeyValuePair<string, object?>(name, RuleToObject(r, numberAsDecimal));
             }
         }
         else if (rule is Rule_member_name)
         {
             foreach (var r in rules)
             {
-                if (r is Rule_string) return (string)RuleToObject(r, numberAsDecimal);
-                if (r is Rule_symbol) return (string)RuleToObject(r, numberAsDecimal);
+                if (r is Rule_string) return (string)RuleToObject(r, numberAsDecimal)!;
+                if (r is Rule_symbol) return (string)RuleToObject(r, numberAsDecimal)!;
             }
         }
         else if (rule is Rule_string)
