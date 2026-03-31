@@ -1,10 +1,10 @@
 ﻿namespace Core;
 
 using Global;
-public class CSharpJsonHandler : IParseJson {
-    private readonly CoreParser.JsoncParser jsonParser;
-    public CSharpJsonHandler(bool numberAsDecimal) {
-        jsonParser = new CoreParser.JsoncParser(numberAsDecimal);
+public class JsoncHandler : IParseJson {
+    private readonly Core.JsoncParser jsonParser;
+    public JsoncHandler(bool numberAsDecimal) {
+        jsonParser = new Core.JsoncParser(numberAsDecimal);
     }
     public object? ParseJson(string json) {
         return jsonParser.ParseJson(json);
