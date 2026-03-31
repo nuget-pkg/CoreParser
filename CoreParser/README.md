@@ -1,3 +1,3 @@
-# CoreParser
+# JsoncParser
 
-[![NuGet version (CoreParser)](https://img.shields.io/nuget/v/CoreParser.svg?style=flat-square)](https://www.nuget.org/packages/CoreParser/)
+[![NuGet version (JsoncParser)](https://img.shields.io/nuget/v/JsoncParser.svg?style=flat-square)](https://www.nuget.org/packages/JsoncParser/)
