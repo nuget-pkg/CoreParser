@@ -4,7 +4,7 @@
     <IsPackable>true</IsPackable>
     <LangVersion>latest</LangVersion>
     <TargetFrameworks>netstandard2.0;net462;net8.0</TargetFrameworks>
-    <Version>2026.0401.0241.54</Version>
+    <Version>2026.0401.0310.11</Version>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <Title>CoreParser Library</Title>
